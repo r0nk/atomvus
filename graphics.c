@@ -65,19 +65,24 @@ void draw_poly(struct polygon p)
 void draw_model(struct model model)
 {
 	unsigned int i;
-	glPushMatrix();
-	glTranslatef(main_player.location.x,
-			main_player.location.y,
-			main_player.location.z);
 	glBegin(GL_TRIANGLES);
 	for(i=0;i<model.cardinality;i++)
 		draw_poly(model.poly[i]);
 	glEnd();
+}
+
+void draw_entity(struct entity e)
+{
+	glPushMatrix();
+	glTranslatef(   e.particle.location.x,
+			e.particle.location.y,
+			e.particle.location.z);
+	draw_model(e.model);
 	glPopMatrix();
 }
 
-void draw_models(){
-	draw_model(main_player.model);
+void draw_entities(){
+	/*TODO draw the entities here*/
 }
 
 void draw(){
@@ -99,7 +104,7 @@ void draw(){
 			camera.eye.y+camera.rot.y,
 			camera.eye.z+camera.rot.z,
 			0,1,0);
-	draw_models();
+	draw_entities();
 
 	glPopMatrix();
 

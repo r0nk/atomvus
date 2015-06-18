@@ -1,14 +1,15 @@
 #ifndef GAME
 #define GAME 1
+#include "vector.h"
 #include "poly.h"
+#include "particle.h"
 
 int init_game();
 
-struct player {
+struct entity 
+{
 	struct model model;
-	point location;
+	struct particle particle;
 };
-
-extern struct player main_player;
 
 #endif

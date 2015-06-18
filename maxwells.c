@@ -22,7 +22,7 @@ struct vector coulombs(struct particle a, struct particle b)
 {
 	struct vector E = {0,0,0};
 	double q = a.charge * b.charge;
-	struct vector r = v_sub(b.l,a.l);
+	struct vector r = v_sub(b.location,a.location);
 	struct vector u = v_unit(r);
 	
 	double mr = v_magnitude(r);
@@ -45,7 +45,7 @@ struct vector biotsavart(struct particle a, struct particle b)
 {
 	struct vector B = {0,0,0};
 	double q = a.charge * b.charge;
-	struct vector r = v_sub(b.l,a.l);
+	struct vector r = v_sub(b.location,a.location);
 	struct vector u = v_unit(r);
 	
 	double mr = v_magnitude(r);

@@ -7,6 +7,6 @@ extern struct particle ions[N_IONS];
 
 void init_physics();
 void dump_state();
-void tick();
+void physics_tick(double dt);
 
 #endif

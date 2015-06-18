@@ -40,5 +40,6 @@ void player_move(double dt)
 void tick()
 {
 	double dt = delta_time();
+	physics_tick();
 	player_move(dt);
 }
