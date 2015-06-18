@@ -5,8 +5,9 @@
 #include "poly.h"
 #include "graphics.h"
 #include "engine.h"
-#include "input.h"
 #include "game.h"
+#include "callbacks.h"
+#include "physics.h"
 
 double delta_time()
 {
@@ -17,7 +18,7 @@ double delta_time()
 
 void player_move(double dt)
 {
-#define player_speed 5
+#define player_speed 7
 	double sci = 1/(fabs(camera.rot.z)+fabs(camera.rot.x));
 	if(keys['W']){
 		camera.eye.z+=(sci*camera.rot.z) * dt * player_speed;
@@ -40,6 +41,6 @@ void player_move(double dt)
 void tick()
 {
 	double dt = delta_time();
-	physics_tick();
+	physics_tick(dt);
 	player_move(dt);
 }

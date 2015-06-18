@@ -3,8 +3,8 @@
 #include "vector.h"
 
 struct particle {
-	double mass;
-	double charge;
+	 long double mass;
+	 long double charge;
 	struct vector location;
 	struct vector velocity;
 	struct vector accel;

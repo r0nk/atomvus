@@ -5,7 +5,6 @@
 #include "callbacks.h"
 #include "game.h"
 #include "graphics.h"
-#include "input.h"
 
 char keys[NUMBER_OF_KEYS];/*boolean array of the input keys*/
 

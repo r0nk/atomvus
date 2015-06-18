@@ -9,7 +9,10 @@ int init_game();
 struct entity 
 {
 	struct model model;
-	struct particle particle;
+	struct particle * particle;
 };
+
+#define N_ENTITIES 50
+struct entity entities[N_ENTITIES];
 
 #endif

@@ -74,15 +74,18 @@ void draw_model(struct model model)
 void draw_entity(struct entity e)
 {
 	glPushMatrix();
-	glTranslatef(   e.particle.location.x,
-			e.particle.location.y,
-			e.particle.location.z);
+	glTranslatef(   e.particle->location.x,
+			e.particle->location.y,
+			e.particle->location.z);
 	draw_model(e.model);
 	glPopMatrix();
 }
 
 void draw_entities(){
 	/*TODO draw the entities here*/
+	int i;
+	for(i=0;i<N_ENTITIES;i++)
+		draw_entity(entities[i]);
 }
 
 void draw(){

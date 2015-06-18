@@ -1,23 +1,53 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #include "maxwells.h"
 #include "particle.h"
 #include "physics.h"
 #include "newton.h"
 #include "vector.h"
+#include "callbacks.h"
 
 struct particle ions[N_IONS];
 
+struct particle electron(){
+	struct particle e;
+	e.mass   = 1;
+	e.charge = -50000;
+	return e;
+}
+
+struct particle proton(){
+	struct particle p;
+	p.mass   = 1836;
+	p.charge = 50000;
+	return p;
+}
+
+struct particle neutron(){
+	struct particle p;
+	p.mass   = 1836;
+	p.charge = 0;
+	return p;
+}
+
 void init_physics()
 {
+#define RANDO ((rand()%60)-30)
 	int i;
 	for(i=0;i<N_IONS;i++){
-		ions[i].location.x=0;
-		ions[i].location.y=(i*5);
-		ions[i].location.z=0;
-		ions[i].mass=1;
-		ions[i].charge=-500;
-		ions[i].velocity=(struct vector){i*0.03,0,0};
+		switch(rand()%3){
+			case 0:
+				ions[i] = neutron();
+				break;
+			case 1:
+				ions[i] = electron();
+				break;
+			case 2:
+				ions[i] = proton();
+				break;
+		}
+		ions[i].location = (struct vector) {RANDO,RANDO,RANDO};
+		ions[i].velocity=(struct vector){0,0,0};
 	}
 }
 
@@ -34,7 +64,7 @@ void dump_state()
 	printf("-----------\n");
 }
 
-void calculate_acceleration(struct particle * p)
+void calculate_acceleration(struct particle * p,double dt)
 {
 	struct vector fv = {0,0,0};
 	int i;
@@ -47,7 +77,7 @@ void calculate_acceleration(struct particle * p)
 	fv.x/=p->mass;
 	fv.y/=p->mass;
 	fv.z/=p->mass;
-	p->accel = fv;
+	p->accel = v_scalar_mul(dt,fv);
 }
 
 void apply_vel(struct particle * p)
@@ -60,7 +90,9 @@ void physics_tick(double dt)
 {
 	int i;
 	for(i=0;i<N_IONS;i++)
-		calculate_acceleration(&ions[i]);
+		calculate_acceleration(&ions[i],dt);
 	for(i=0;i<N_IONS;i++)
 		apply_vel(&ions[i]);
+	if(keys['P'])
+		dump_state();
 }

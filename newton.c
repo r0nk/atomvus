@@ -19,3 +19,4 @@ struct vector gravitation (struct particle a, struct particle b)
 	F.z =  -G * (m / (r.z)?fabs(r.z*r.z):1 ) * u.z;
 	return F;
 }
+
