@@ -1,9 +1,7 @@
 #ifndef POLY
 #define POLY
 
-struct vector {
-	double x,y,z;
-};
+#include "vector.h"
 
 typedef struct vector point;
 

@@ -4,7 +4,6 @@
 #include "callbacks.h"
 #include "game.h"
 #include "poly.h"
-#include "map.h"
 
 GLFWwindow * window;
 int window_width,window_height;
@@ -77,33 +76,7 @@ void draw_model(struct model model)
 	glPopMatrix();
 }
 
-void draw_block(int x, int y, int z)
-{
-	unsigned int i;
-	glPushMatrix();
-	glTranslatef((double)x,(double)y,(double)z);
-	glBegin(GL_TRIANGLES);
-	for(i=0;i<block.cardinality;i++)
-		draw_poly(block.poly[i]);
-	glEnd();
-	glPopMatrix();
-}
-
-void draw_map()
-{
-	int x,y,z;
-	for(x=0;x<20;x++){
-		for(y=0;y<20;y++){
-			for(z=0;z<20;z++){
-				if(world_map.tiles[x][y][z])
-					draw_block(x,y,z);
-			}
-		}
-	}
-}
-
 void draw_models(){
-	draw_map();
 	draw_model(main_player.model);
 }
 
