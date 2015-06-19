@@ -12,7 +12,7 @@ struct entity
 	struct particle * particle;
 };
 
-#define N_ENTITIES 50
+#define N_ENTITIES 2
 struct entity entities[N_ENTITIES];
 
 #endif

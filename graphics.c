@@ -29,7 +29,7 @@ int init_graphics()
 	glfwGetFramebufferSize(window, &window_width, &window_height);
 	glViewport(0,0,window_width,window_height);
 	ratio = window_width / (float) window_height;
-	glClearColor(0.2,0.3,0.3,1.0);
+	glClearColor(1.0,1.0,1.0,1.0);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
@@ -92,7 +92,7 @@ void draw(){
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
 	//Add ambient light
-	GLfloat ambientColor[] = {0.2f, 0.2f, 0.2f, 1.0f}; 
+	GLfloat ambientColor[] = {0.1f, 0.1f, 0.1f, 1.0f}; 
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
 
 	glMatrixMode(GL_PROJECTION);
